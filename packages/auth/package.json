@@ -1,0 +1,24 @@
+{
+  "name": "@gaveta/auth",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@gaveta/db": "workspace:*",
+    "@gaveta/env": "workspace:*",
+    "better-auth": "catalog:",
+    "dotenv": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@gaveta/config": "workspace:*",
+    "typescript": "catalog:"
+  }
+}
