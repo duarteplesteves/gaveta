@@ -1,4 +1,4 @@
-import { HeadContent, Outlet, createRootRouteWithContext } from "@tanstack/react-router";
+import { HeadContent, Outlet, createRootRoute } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 import Header from "@/components/header";
@@ -6,29 +6,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 
 import "../index.css";
-
-export interface RouterAppContext {}
-
-export const Route = createRootRouteWithContext<RouterAppContext>()({
-  component: RootComponent,
-  head: () => ({
-    meta: [
-      {
-        title: "gaveta",
-      },
-      {
-        name: "description",
-        content: "gaveta is a web application",
-      },
-    ],
-    links: [
-      {
-        rel: "icon",
-        href: "/favicon.ico",
-      },
-    ],
-  }),
-});
 
 function RootComponent() {
   return (
@@ -50,3 +27,24 @@ function RootComponent() {
     </>
   );
 }
+
+export const Route = createRootRoute({
+  component: RootComponent,
+  head: () => ({
+    links: [
+      {
+        href: "/favicon.ico",
+        rel: "icon",
+      },
+    ],
+    meta: [
+      {
+        title: "gaveta",
+      },
+      {
+        content: "gaveta is a web application",
+        name: "description",
+      },
+    ],
+  }),
+});

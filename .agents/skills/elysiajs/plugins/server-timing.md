@@ -75,6 +75,6 @@ new Elysia().use(
     allow: ({ request }) => {
       return new URL(request.url).pathname !== "/no-trace";
     },
-  }),
+  })
 );
 ```

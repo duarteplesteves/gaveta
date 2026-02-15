@@ -29,6 +29,6 @@ new Elysia()
               name: t.String(),
             }),
           }),
-        }),
+        })
   )
   .listen(3000);

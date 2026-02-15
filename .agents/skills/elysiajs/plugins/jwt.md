@@ -19,7 +19,7 @@ const app = new Elysia()
     jwt({
       name: "jwt",
       secret: "Fischl von Luftschloss Narfidort",
-    }),
+    })
   )
   .get("/sign/:name", async ({ jwt, params: { name }, cookie: { auth } }) => {
     const value = await jwt.sign({ name });
@@ -61,7 +61,7 @@ new Elysia()
     jwt({
       name: "myJWTNamespace",
       secret: process.env.JWT_SECRETS!,
-    }),
+    })
   )
   .get("/sign/:name", ({ myJWTNamespace, params }) => {
     return myJWTNamespace.sign(params);
@@ -219,7 +219,7 @@ const app = new Elysia()
       name: "jwt",
       secret: "kunikuzushi",
       exp: "7d",
-    }),
+    })
   )
   .get("/sign/:name", async ({ jwt, params }) => jwt.sign(params));
 ```

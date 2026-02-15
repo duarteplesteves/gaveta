@@ -16,7 +16,7 @@ import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-proto";
 new Elysia().use(
   opentelemetry({
     spanProcessors: [new BatchSpanProcessor(new OTLPTraceExporter())],
-  }),
+  })
 );
 ```
 

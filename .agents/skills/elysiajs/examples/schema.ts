@@ -56,6 +56,6 @@ const app = new Elysia()
           transform({ params }) {
             params.id = +params.id;
           },
-        }),
+        })
   )
   .listen(3000);

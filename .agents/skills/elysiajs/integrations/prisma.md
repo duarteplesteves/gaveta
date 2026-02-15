@@ -94,7 +94,7 @@ new Elysia()
         200: UserPlain,
         404: t.String(),
       },
-    },
+    }
   )
   .listen(3000);
 ```

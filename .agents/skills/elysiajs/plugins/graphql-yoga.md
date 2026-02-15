@@ -27,7 +27,7 @@ const app = new Elysia()
           hi: () => "Hello from Elysia",
         },
       },
-    }),
+    })
   )
   .listen(3000);
 ```
@@ -71,7 +71,7 @@ const app = new Elysia()
           hi: async (parent, args, context) => context.name,
         },
       },
-    }),
+    })
   )
   .listen(3000);
 ```

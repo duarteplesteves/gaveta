@@ -1,25 +1,49 @@
 import { cors } from "@elysiajs/cors";
-import { auth } from "@gaveta/auth";
+import { fromTypes, openapi } from "@elysiajs/openapi";
 import { env } from "@gaveta/env/server";
 import { Elysia } from "elysia";
+import { z } from "zod";
+
+import { betterAuth as auth } from "./modules/auth";
+import { OpenAPI } from "./plugins/openapi";
 
 const app = new Elysia()
   .use(
+    openapi({
+      documentation: {
+        components: await OpenAPI.components,
+        paths: await OpenAPI.getPaths(),
+        tags: [
+          { description: "General endpoints", name: "App" },
+          { description: "Categories endpoints", name: "Categories" },
+          { description: "Items endpoints", name: "Items" },
+          { description: "Tags endpoints", name: "Tags" },
+        ],
+      },
+      mapJsonSchema: {
+        zod: z.toJSONSchema,
+      },
+      references: fromTypes(
+        process.env.NODE_ENV === "production"
+          ? "dist/index.d.ts"
+          : "src/index.ts"
+      ),
+    })
+  )
+  .use(
     cors({
-      origin: env.CORS_ORIGIN,
-      methods: ["GET", "POST", "OPTIONS"],
       allowedHeaders: ["Content-Type", "Authorization"],
       credentials: true,
-    }),
+      methods: ["GET", "POST", "OPTIONS"],
+      origin: env.CORS_ORIGIN,
+    })
   )
-  .all("/api/auth/*", async (context) => {
-    const { request, status } = context;
-    if (["POST", "GET"].includes(request.method)) {
-      return auth.handler(request);
-    }
-    return status(405);
-  })
+  .use(auth)
   .get("/", () => "OK")
-  .listen(3000, () => {
-    console.log("Server is running on http://localhost:3000");
-  });
+  .listen(Bun.env.PORT ?? 3000, () =>
+    console.log(
+      `🦊 Elysia is running at ${app.server?.hostname}:${app.server?.port}`
+    )
+  );
+
+export type app = typeof app;

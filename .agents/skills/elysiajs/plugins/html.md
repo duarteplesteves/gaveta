@@ -27,7 +27,7 @@ new Elysia()
                 <body>
                     <h1>Hello World</h1>
                 </body>
-            </html>`,
+            </html>`
   )
   .get("/jsx", () => (
     <html lang="en">
@@ -122,7 +122,7 @@ new Elysia()
     ),
     {
       body: t.String(),
-    },
+    }
   )
   .listen(3000);
 ```

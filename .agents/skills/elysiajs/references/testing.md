@@ -66,7 +66,7 @@ it("should create user", async () => {
         name: "Jane Doe",
         email: "jane@example.com",
       }),
-    }),
+    })
   );
 
   const data = await res.json();
@@ -111,7 +111,7 @@ export const authModule = new Elysia({ prefix: "/auth" })
         username: t.String(),
         password: t.String(),
       }),
-    },
+    }
   )
   .get("/profile", ({ cookie: { session }, status }) => {
     if (!session.value) {
@@ -140,7 +140,7 @@ describe("Auth Module", () => {
           username: "admin",
           password: "password",
         }),
-      }),
+      })
     );
 
     const data = await res.json();
@@ -159,7 +159,7 @@ describe("Auth Module", () => {
           username: "wrong",
           password: "wrong",
         }),
-      }),
+      })
     );
 
     const data = await res.json();
@@ -167,7 +167,9 @@ describe("Auth Module", () => {
   });
 
   it("should return 401 for unauthenticated profile request", async () => {
-    const res = await authModule.handle(new Request("http://localhost/auth/profile"));
+    const res = await authModule.handle(
+      new Request("http://localhost/auth/profile")
+    );
 
     expect(res.status).toBe(401);
   });
@@ -260,7 +262,7 @@ it("should require authorization", async () => {
       headers: {
         Authorization: "Bearer token123",
       },
-    }),
+    })
   );
 
   expect(res.status).toBe(200);
@@ -289,7 +291,7 @@ it("should validate request body", async () => {
         name: "John",
         age: 25,
       }),
-    }),
+    })
   );
   expect(validRes.status).toBe(200);
 
@@ -302,7 +304,7 @@ it("should validate request body", async () => {
         name: "John",
         age: -5,
       }),
-    }),
+    })
   );
   expect(invalidRes.status).toBe(400);
 });
@@ -353,7 +355,7 @@ export const authModule = new Elysia({ prefix: "/auth" })
         username: t.String(),
         password: t.String(),
       }),
-    },
+    }
   )
   .get("/profile", ({ cookie: { session }, status }) => {
     if (!session.value) {

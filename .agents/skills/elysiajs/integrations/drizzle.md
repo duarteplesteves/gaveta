@@ -92,7 +92,7 @@ const createUser = t.Omit(_createUser, ["id", "salt", "createdAt"]);
 // ❌ Infinite loop
 const createUser = t.Omit(
   createInsertSchema(table.user, { email: t.String({ format: "email" }) }),
-  ["id", "salt", "createdAt"],
+  ["id", "salt", "createdAt"]
 );
 ```
 
@@ -110,12 +110,19 @@ Copy as-is for simplified usage:
  */
 
 import { Kind, type TObject } from "@sinclair/typebox";
-import { createInsertSchema, createSelectSchema, BuildSchema } from "drizzle-typebox";
+import {
+  createInsertSchema,
+  createSelectSchema,
+  BuildSchema,
+} from "drizzle-typebox";
 
 import { table } from "./schema";
 import type { Table } from "drizzle-orm";
 
-type Spread<T extends TObject | Table, Mode extends "select" | "insert" | undefined> =
+type Spread<
+  T extends TObject | Table,
+  Mode extends "select" | "insert" | undefined,
+> =
   T extends TObject<infer Fields>
     ? {
         [K in keyof Fields]: Fields[K];
@@ -131,9 +138,12 @@ type Spread<T extends TObject | Table, Mode extends "select" | "insert" | undefi
 /**
  * Spread a Drizzle schema into a plain object
  */
-export const spread = <T extends TObject | Table, Mode extends "select" | "insert" | undefined>(
+export const spread = <
+  T extends TObject | Table,
+  Mode extends "select" | "insert" | undefined,
+>(
   schema: T,
-  mode?: Mode,
+  mode?: Mode
 ): Spread<T, Mode> => {
   const newSchema: Record<string, unknown> = {};
   let table;
@@ -146,7 +156,10 @@ export const spread = <T extends TObject | Table, Mode extends "select" | "inser
         break;
       }
 
-      table = mode === "insert" ? createInsertSchema(schema) : createSelectSchema(schema);
+      table =
+        mode === "insert"
+          ? createInsertSchema(schema)
+          : createSelectSchema(schema);
 
       break;
 
@@ -155,7 +168,8 @@ export const spread = <T extends TObject | Table, Mode extends "select" | "inser
       table = schema;
   }
 
-  for (const key of Object.keys(table.properties)) newSchema[key] = table.properties[key];
+  for (const key of Object.keys(table.properties))
+    newSchema[key] = table.properties[key];
 
   return newSchema as any;
 };
@@ -172,7 +186,7 @@ export const spreads = <
   Mode extends "select" | "insert" | undefined,
 >(
   models: T,
-  mode?: Mode,
+  mode?: Mode
 ): {
   [K in keyof T]: Spread<T[K], Mode>;
 } => {
@@ -243,7 +257,7 @@ export const db = {
         email: t.String({ format: "email" }),
       }),
     },
-    "insert",
+    "insert"
   ),
   select: spreads(
     {
@@ -251,7 +265,7 @@ export const db = {
         email: t.String({ format: "email" }),
       }),
     },
-    "select",
+    "select"
   ),
 } as const;
 ```

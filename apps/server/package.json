@@ -11,12 +11,13 @@
   },
   "dependencies": {
     "@elysiajs/cors": "^1.4.1",
+    "@elysiajs/openapi": "^1.4.14",
     "@gaveta/auth": "workspace:*",
     "@gaveta/db": "workspace:*",
     "@gaveta/env": "workspace:*",
     "better-auth": "catalog:",
     "dotenv": "catalog:",
-    "elysia": "^1.4.21",
+    "elysia": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {

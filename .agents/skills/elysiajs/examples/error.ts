@@ -27,7 +27,7 @@ new Elysia()
       nested: t.Optional(
         t.Object({
           hi: t.String(),
-        }),
+        })
       ),
     }),
     // local handler

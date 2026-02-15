@@ -43,9 +43,11 @@ Ensures routing works in any location.
 
 ```typescript
 // app/[...slugs]+api.ts
-const app = new Elysia().get("/", "Hello Nextjs").post("/user", ({ body }) => body, {
-  body: treaty.schema("User", { name: "string" }),
-});
+const app = new Elysia()
+  .get("/", "Hello Nextjs")
+  .post("/user", ({ body }) => body, {
+    body: treaty.schema("User", { name: "string" }),
+  });
 
 export type app = typeof app;
 

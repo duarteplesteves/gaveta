@@ -22,7 +22,7 @@ new Elysia()
       run() {
         console.log("Heartbeat");
       },
-    }),
+    })
   )
   .listen(3000);
 ```
@@ -130,7 +130,7 @@ const app = new Elysia()
       run() {
         console.log("Heartbeat");
       },
-    }),
+    })
   )
   .get(
     "/stop",
@@ -142,7 +142,7 @@ const app = new Elysia()
       heartbeat.stop();
 
       return "Stop heartbeat";
-    },
+    }
   )
   .listen(3000);
 ```
@@ -165,7 +165,7 @@ const app = new Elysia()
       run() {
         console.log("Heartbeat");
       },
-    }),
+    })
   )
   .get(
     "/stop",
@@ -177,7 +177,7 @@ const app = new Elysia()
       heartbeat.stop();
 
       return "Stop heartbeat";
-    },
+    }
   )
   .listen(3000);
 ```

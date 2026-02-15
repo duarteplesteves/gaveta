@@ -20,7 +20,9 @@ Apply node adapter:
 import { Elysia } from "elysia";
 import { node } from "@elysiajs/node";
 
-const app = new Elysia({ adapter: node() }).get("/", () => "Hello Elysia").listen(3000);
+const app = new Elysia({ adapter: node() })
+  .get("/", () => "Hello Elysia")
+  .listen(3000);
 ```
 
 ## Additional Setup (Recommended)

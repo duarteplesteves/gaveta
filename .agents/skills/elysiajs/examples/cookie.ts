@@ -21,10 +21,10 @@ const app = new Elysia({
           t.Object({
             name: t.String(),
             affilation: t.String(),
-          }),
+          })
         ),
       }),
-    },
+    }
   )
   .get("/create", ({ cookie: { name } }) => (name.value = "Himari"))
   .get(
@@ -40,6 +40,6 @@ const app = new Elysia({
       cookie: t.Cookie({
         name: t.Optional(t.String()),
       }),
-    },
+    }
   )
   .listen(3000);

@@ -128,7 +128,9 @@ Must resolve to same file on frontend/backend
 ## Response
 
 ```typescript
-const { data, error, response, status, headers } = await api.user.post({ name: "x" });
+const { data, error, response, status, headers } = await api.user.post({
+  name: "x",
+});
 
 if (error) {
   switch (error.status) {

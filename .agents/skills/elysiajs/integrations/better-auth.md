@@ -81,7 +81,7 @@ new Elysia().use(
       components: await OpenAPI.components,
       paths: await OpenAPI.getPaths(),
     },
-  }),
+  })
 );
 ```
 
@@ -97,7 +97,7 @@ new Elysia()
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
       credentials: true,
       allowedHeaders: ["Content-Type", "Authorization"],
-    }),
+    })
   )
   .mount(auth.handler);
 ```
@@ -107,20 +107,22 @@ new Elysia()
 Use macro + resolve for session/user:
 
 ```typescript
-const betterAuth = new Elysia({ name: "better-auth" }).mount(auth.handler).macro({
-  auth: {
-    async resolve({ status, request: { headers } }) {
-      const session = await auth.api.getSession({ headers });
+const betterAuth = new Elysia({ name: "better-auth" })
+  .mount(auth.handler)
+  .macro({
+    auth: {
+      async resolve({ status, request: { headers } }) {
+        const session = await auth.api.getSession({ headers });
 
-      if (!session) return status(401);
+        if (!session) return status(401);
 
-      return {
-        user: session.user,
-        session: session.session,
-      };
+        return {
+          user: session.user,
+          session: session.session,
+        };
+      },
     },
-  },
-});
+  });
 
 new Elysia().use(betterAuth).get("/user", ({ user }) => user, { auth: true });
 ```

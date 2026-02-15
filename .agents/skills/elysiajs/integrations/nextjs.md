@@ -13,9 +13,11 @@ Run Elysia on Next.js App Router.
 // app/api/[[...slugs]]/route.ts
 import { Elysia, t } from "elysia";
 
-const app = new Elysia({ prefix: "/api" }).get("/", "Hello Nextjs").post("/", ({ body }) => body, {
-  body: t.Object({ name: t.String() }),
-});
+const app = new Elysia({ prefix: "/api" })
+  .get("/", "Hello Nextjs")
+  .post("/", ({ body }) => body, {
+    body: t.Object({ name: t.String() }),
+  });
 
 export const GET = app.fetch;
 export const POST = app.fetch;
@@ -65,7 +67,9 @@ import { treaty } from "@elysiajs/eden";
 import type { app } from "../app/api/[[...slugs]]/route";
 
 export const api =
-  typeof process !== "undefined" ? treaty(app).api : treaty<typeof app>("localhost:3000").api;
+  typeof process !== "undefined"
+    ? treaty(app).api
+    : treaty<typeof app>("localhost:3000").api;
 ```
 
 Use `typeof process` not `typeof window` (window undefined at build time → hydration error).

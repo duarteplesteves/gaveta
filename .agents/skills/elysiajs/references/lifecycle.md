@@ -98,12 +98,14 @@ _Like `derive` but runs **after validation** along "Before Handle" (so you can r
 - Usually placed inside a `guard` because it isn't available as a local hook.
 
 ```ts
-new Elysia().guard({ headers: t.Object({ authorization: t.String() }) }, (app) =>
-  app
-    .resolve(({ headers }) => ({
-      bearer: headers.authorization.split(" ")[1],
-    }))
-    .get("/", ({ bearer }) => bearer),
+new Elysia().guard(
+  { headers: t.Object({ authorization: t.String() }) },
+  (app) =>
+    app
+      .resolve(({ headers }) => ({
+        bearer: headers.authorization.split(" ")[1],
+      }))
+      .get("/", ({ bearer }) => bearer)
 );
 ```
 
@@ -138,12 +140,15 @@ _Runs right after all `afterHandle` hooks; maps **any** value to a Web standard 
 ```ts
 new Elysia().mapResponse(({ responseValue, set }) => {
   const body =
-    typeof responseValue === "object" ? JSON.stringify(responseValue) : String(responseValue ?? "");
+    typeof responseValue === "object"
+      ? JSON.stringify(responseValue)
+      : String(responseValue ?? "");
 
   set.headers["content-encoding"] = "gzip";
   return new Response(Bun.gzipSync(new TextEncoder().encode(body)), {
     headers: {
-      "Content-Type": typeof responseValue === "object" ? "application/json" : "text/plain",
+      "Content-Type":
+        typeof responseValue === "object" ? "application/json" : "text/plain",
     },
   });
 });
@@ -174,7 +179,9 @@ _Runs **after** the response has been sent to the client._
 - Perfect for **logging, metrics, cleanup**.
 
 ```ts
-new Elysia().onAfterResponse(() => console.log("âœ… response sent at", Date.now()));
+new Elysia().onAfterResponse(() =>
+  console.log("âœ… response sent at", Date.now())
+);
 ```
 
 ---

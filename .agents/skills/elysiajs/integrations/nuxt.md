@@ -25,7 +25,8 @@ export default defineNuxtConfig({
 
 ```typescript
 // api.ts
-export default () => new Elysia().get("/hello", () => ({ message: "Hello world!" }));
+export default () =>
+  new Elysia().get("/hello", () => ({ message: "Hello world!" }));
 ```
 
 3. Use Eden Treaty:

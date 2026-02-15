@@ -62,7 +62,7 @@ const app = new Elysia()
         200: t.Number(),
         404: t.Literal("Not Found"),
       },
-    },
+    }
   )
   .listen(3000);
 ```
@@ -150,7 +150,7 @@ body: t.Object({
     t.Object({
       id: t.String(),
       name: t.String(),
-    }),
+    })
   ),
 });
 ```

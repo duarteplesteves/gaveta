@@ -14,9 +14,11 @@ Run Elysia on SvelteKit server routes.
 // src/routes/[...slugs]/+server.ts
 import { Elysia, t } from "elysia";
 
-const app = new Elysia().get("/", "hello SvelteKit").post("/", ({ body }) => body, {
-  body: t.Object({ name: t.String() }),
-});
+const app = new Elysia()
+  .get("/", "hello SvelteKit")
+  .post("/", ({ body }) => body, {
+    body: t.Object({ name: t.String() }),
+  });
 
 interface WithRequest {
   request: Request;

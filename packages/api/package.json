@@ -1,0 +1,21 @@
+{
+  "name": "libs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "lint": "eslint .",
+    "test": "bun run test:unit && bun run coverage",
+    "test:unit": "bun test",
+    "coverage": "bun test --coverage"
+  },
+  "dependencies": {
+    "@gaveta/env": "workspace:*",
+    "elysia": "catalog:",
+    "server": "workspace:*"
+  },
+  "devDependencies": {
+    "@elysiajs/eden": "1.4.4",
+    "@gaveta/config": "workspace:*",
+    "typescript": "^5.9.2"
+  }
+}

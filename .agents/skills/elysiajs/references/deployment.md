@@ -211,7 +211,9 @@ compatibility_date = "2025-06-01"
 import { Elysia } from "elysia";
 import { node } from "@elysiajs/node";
 
-const app = new Elysia({ adapter: node() }).get("/", () => "Hello Node.js").listen(3000);
+const app = new Elysia({ adapter: node() })
+  .get("/", () => "Hello Node.js")
+  .listen(3000);
 ```
 
 ## Performance Optimization
@@ -291,7 +293,7 @@ new Elysia().use(
   opentelemetry({
     serviceName: "my-service",
     endpoint: "http://localhost:4318",
-  }),
+  })
 );
 ```
 
@@ -366,12 +368,12 @@ export const app = new Elysia({
   .use(
     cors({
       origin: process.env.CORS_ORIGIN || "http://localhost:3000",
-    }),
+    })
   )
   .use(
     opentelemetry({
       serviceName: "my-service",
-    }),
+    })
   )
   .get("/health", () => ({ status: "ok" }))
   .get("/", () => "Hello Production")

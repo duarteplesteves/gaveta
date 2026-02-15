@@ -39,7 +39,7 @@ const app = new Elysia()
           },
         },
       },
-    }),
+    })
   )
   .listen(3000);
 ```
@@ -65,7 +65,7 @@ const app = new Elysia()
           authorization,
         };
       },
-    }),
+    })
   )
   .listen(3000);
 ```

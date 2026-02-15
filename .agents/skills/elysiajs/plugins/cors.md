@@ -138,7 +138,7 @@ const app = new Elysia()
   .use(
     cors({
       origin: /.*\.saltyaom\.com$/,
-    }),
+    })
   )
   .get("/", () => "Hi")
   .listen(3000);

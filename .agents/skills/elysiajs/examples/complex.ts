@@ -82,7 +82,7 @@ const app = new Elysia()
       .get("/", () => "From Group")
       .get("/hi", () => "HI GROUP")
       .get("/elysia", () => "Welcome to Elysian Realm")
-      .get("/fbk", () => "FuBuKing"),
+      .get("/fbk", () => "FuBuKing")
   )
   .get("/response-header", ({ set }) => {
     set.status = 404;

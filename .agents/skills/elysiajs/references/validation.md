@@ -122,7 +122,7 @@ cookie: t.Cookie(
   {
     secure: true,
     httpOnly: true,
-  },
+  }
 );
 ```
 
@@ -325,7 +325,7 @@ t.Array(t.Number(), {
 // Object - allow extra properties
 t.Object(
   { x: t.Number() },
-  { additionalProperties: true }, // default: false
+  { additionalProperties: true } // default: false
 );
 ```
 
@@ -357,7 +357,7 @@ t.Partial(
   t.Object({
     x: t.Number(),
     y: t.Number(),
-  }),
+  })
 );
 // type: { x?: number, y?: number }
 // value: {} or { y: 123 } or { x: 1, y: 2 }
@@ -401,7 +401,7 @@ t.Cookie(
   },
   {
     secrets: "secret-key", // or ['key1', 'key2'] for rotation
-  },
+  }
 );
 ```
 

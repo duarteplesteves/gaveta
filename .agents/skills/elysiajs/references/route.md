@@ -174,7 +174,9 @@ new Elysia()
 ```ts
 new Elysia()
   .derive(({ headers }) => ({
-    bearer: headers.authorization?.startsWith("Bearer ") ? headers.authorization.slice(7) : null,
+    bearer: headers.authorization?.startsWith("Bearer ")
+      ? headers.authorization.slice(7)
+      : null,
   }))
   .get("/", ({ bearer }) => bearer);
 ```

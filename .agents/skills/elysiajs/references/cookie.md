@@ -94,7 +94,7 @@ new Elysia().get(
         name: t.String(),
       }),
     }),
-  },
+  }
 );
 ```
 
@@ -106,7 +106,7 @@ cookie: t.Cookie({
     t.Object({
       id: t.Numeric(),
       name: t.String(),
-    }),
+    })
   ),
 });
 ```
@@ -132,9 +132,9 @@ new Elysia().get(
       {
         secrets: "Fischl von Luftschloss Narfidort",
         sign: ["profile"],
-      },
+      }
     ),
-  },
+  }
 );
 ```
 

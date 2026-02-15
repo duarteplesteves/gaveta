@@ -74,7 +74,7 @@ import { fromTypes } from "@elysiajs/openapi";
 export const app = new Elysia().use(
   openapi({
     references: fromTypes(),
-  }),
+  })
 );
 ```
 
@@ -83,7 +83,9 @@ export const app = new Elysia().use(
 Recommended to generate `.d.ts` file for production when using OpenAPI Type Gen
 
 ```typescript
-references: fromTypes(process.env.NODE_ENV === "production" ? "dist/index.d.ts" : "src/index.ts");
+references: fromTypes(
+  process.env.NODE_ENV === "production" ? "dist/index.d.ts" : "src/index.ts"
+);
 ```
 
 ### Options

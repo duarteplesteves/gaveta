@@ -130,7 +130,9 @@ const app = new Elysia().get("/", ({ stuff }) => {
 
 describe("Controller", () => {
   it("should work", async () => {
-    const response = await app.handle(new Request("http://localhost/")).then((x) => x.text());
+    const response = await app
+      .handle(new Request("http://localhost/"))
+      .then((x) => x.text());
 
     expect(response).toBe("ok");
   });
@@ -174,7 +176,7 @@ new Elysia().get(
   },
   {
     body: t.Numeric(),
-  },
+  }
 );
 ```
 
@@ -200,9 +202,11 @@ const AuthService = new Elysia({ name: "Auth.Service" }).macro({
   },
 });
 
-const UserController = new Elysia().use(AuthService).get("/profile", ({ Auth: { user } }) => user, {
-  isSignIn: true,
-});
+const UserController = new Elysia()
+  .use(AuthService)
+  .get("/profile", ({ Auth: { user } }) => user, {
+    isSignIn: true,
+  });
 ```
 
 ### Do: Decorate only request dependent property
@@ -215,7 +219,10 @@ Overusing decorators may tie your code to Elysia, making it harder to test and r
 import { Elysia } from "elysia";
 
 new Elysia()
-  .decorate("requestIP", ({ request }) => request.headers.get("x-forwarded-for") || request.ip)
+  .decorate(
+    "requestIP",
+    ({ request }) => request.headers.get("x-forwarded-for") || request.ip
+  )
   .decorate("requestTime", () => Date.now())
   .decorate("session", ({ cookie }) => cookie.session.value)
   .get("/", ({ requestIP, requestTime, session }) => {
@@ -285,7 +292,7 @@ new Elysia().post(
   },
   {
     body: customBody,
-  },
+  }
 );
 ```
 
@@ -386,7 +393,7 @@ const UserController = new Elysia({ prefix: "/auth" })
     },
     {
       body: "auth.Sign",
-    },
+    }
   );
 ```
 

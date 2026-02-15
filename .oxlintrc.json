@@ -3,5 +3,15 @@
   "extends": [
     "./node_modules/ultracite/config/oxlint/core/.oxlintrc.json",
     "./node_modules/ultracite/config/oxlint/react/.oxlintrc.json"
-  ]
+  ],
+  "rules": {
+    "unicorn/no-abusive-eslint-disable": "off",
+    "eslint/no-inline-comments": "off",
+    "react-perf/jsx-no-new-function-as-prop": "off",
+    "import/no-relative-parent-imports": "off",
+    "eslint/func-style": "off",
+    "unicorn/filename-case": "off",
+    "unicorn/no-empty-file": "warn"
+  },
+  "ignorePatterns": [".agents/**", ".claude"]
 }

@@ -2,7 +2,9 @@ import { Elysia, t } from "elysia";
 
 // ? Elysia#83 | Proposal: Standardized way of renaming third party plugin-scoped stuff
 // this would be a plugin provided by a third party
-const myPlugin = new Elysia().decorate("myProperty", 42).model("salt", t.String());
+const myPlugin = new Elysia()
+  .decorate("myProperty", 42)
+  .model("salt", t.String());
 
 new Elysia()
   .use(
@@ -18,7 +20,7 @@ new Elysia()
         pepper: t.String(),
       }))
       // Add prefix
-      .prefix("decorator", "unstable"),
+      .prefix("decorator", "unstable")
   )
   .get("/mapped", ({ unstableRenamedProperty }) => unstableRenamedProperty)
   .post("/pepper", ({ body }) => body, {
