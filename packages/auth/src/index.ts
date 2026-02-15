@@ -1,7 +1,7 @@
 import { db } from "@gaveta/db";
 import { env } from "@gaveta/env/server";
-import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { betterAuth } from "better-auth/minimal";
 import { openAPI } from "better-auth/plugins";
 
 export const auth = betterAuth({
@@ -13,6 +13,7 @@ export const auth = betterAuth({
     },
   },
   basePath: "/auth",
+  baseURL: env.BASE_URL,
   database: drizzleAdapter(db, {
     provider: "pg",
     usePlural: true,
@@ -27,6 +28,11 @@ export const auth = betterAuth({
   },
   experimental: { joins: true },
   plugins: [openAPI()],
+  rateLimit: {
+    enabled: true,
+    max: 10,
+    window: 60,
+  },
   session: {
     cookieCache: {
       enabled: true,
