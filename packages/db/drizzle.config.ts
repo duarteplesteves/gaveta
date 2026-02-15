@@ -7,10 +7,11 @@ dotenv.config({
 });
 
 export default defineConfig({
+  casing: "snake_case",
   dbCredentials: {
-    url: process.env.DATABASE_URL || "",
+    url: process.env.DATABASE_URL ?? "",
   },
   dialect: "postgresql",
   out: "./src/migrations",
-  schema: "./src/schema",
+  schema: "./src/schema/index.ts",
 });
