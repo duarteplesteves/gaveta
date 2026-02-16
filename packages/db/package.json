@@ -7,6 +7,9 @@
     },
     "./*": {
       "default": "./src/*.ts"
+    },
+    "./schema": {
+      "default": "./src/schema/index.ts"
     }
   },
   "scripts": {
@@ -17,7 +20,8 @@
     "db:start": "docker compose up -d",
     "db:watch": "docker compose up",
     "db:stop": "docker compose stop",
-    "db:down": "docker compose down"
+    "db:down": "docker compose down",
+    "db:seed": "bun run src/seed.ts"
   },
   "dependencies": {
     "@gaveta/env": "workspace:*",

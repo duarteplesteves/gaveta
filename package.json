@@ -31,6 +31,7 @@
     "db:watch": "turbo run -F @gaveta/db db:watch",
     "db:stop": "turbo run -F @gaveta/db db:stop",
     "db:down": "turbo run -F @gaveta/db db:down",
+    "db:seed": "turbo run -F @gaveta/db db:seed",
     "check": "ultracite check",
     "fix": "ultracite fix",
     "prepare": "husky"

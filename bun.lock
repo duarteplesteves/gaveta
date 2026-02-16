@@ -4,11 +4,6 @@
   "workspaces": {
     "": {
       "name": "gaveta",
-      "dependencies": {
-        "@gaveta/env": "workspace:*",
-        "dotenv": "catalog:",
-        "zod": "catalog:",
-      },
       "devDependencies": {
         "@gaveta/config": "workspace:*",
         "@types/bun": "catalog:",
