@@ -26,16 +26,24 @@ export const items = new Elysia({
       200: t.Array(ItemModel.response),
     },
   })
-  .post("/", async ({ body, user }) => await createItem(body, user.id), {
-    auth: true,
-    body: "Item.Create",
-    detail: { summary: "Create a new item" },
-    response: {
-      200: "Item.Response",
-      404: t.String(),
-      500: t.String(),
+  .post(
+    "/",
+    async ({ body, user, set }) => {
+      const res = await createItem(body, user.id);
+      set.status = 201;
+      return res;
     },
-  })
+    {
+      auth: true,
+      body: "Item.Create",
+      detail: { summary: "Create a new item" },
+      response: {
+        201: "Item.Response",
+        404: t.String(),
+        500: t.String(),
+      },
+    }
+  )
   .guard({
     params: "Item.Id",
   })

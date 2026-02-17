@@ -82,7 +82,6 @@ export async function deleteCategory(id: string, userId: string) {
   // Move items to "Other" category before deleting
   const otherCategory = await db.query.category.findFirst({
     columns: { id: true },
-    // where: (c, { eq }) => eq(c.name, "Other") && eq(c.userId, userId),
     where: {
       name: "Other",
       userId,

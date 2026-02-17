@@ -24,15 +24,23 @@ export const categories = new Elysia({
       200: t.Array(CategoryModel.response),
     },
   })
-  .post("/", async ({ body, user }) => await createCategory(body, user.id), {
-    auth: true,
-    body: "Category.Create",
-    detail: { summary: "Create a user-defined category" },
-    response: {
-      200: "Category.Response",
-      500: t.String(),
+  .post(
+    "/",
+    async ({ body, user, set }) => {
+      const res = await createCategory(body, user.id);
+      set.status = 201;
+      return res;
     },
-  })
+    {
+      auth: true,
+      body: "Category.Create",
+      detail: { summary: "Create a user-defined category" },
+      response: {
+        200: "Category.Response",
+        500: t.String(),
+      },
+    }
+  )
   .guard({
     params: "Category.Id",
   })
