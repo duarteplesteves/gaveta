@@ -1,20 +1,9 @@
 /* oxlint-disable jest/require-hook, prefer-await-to-callbacks, prefer-await-to-then */
-import dotenv from "dotenv";
 import { eq } from "drizzle-orm";
-import { drizzle } from "drizzle-orm/node-postgres";
 
+import { db } from ".";
 import { category } from "./schema/category";
 import { user } from "./schema/user";
-
-dotenv.config({ path: "../../apps/server/.env" });
-
-const { DATABASE_URL } = process.env;
-if (!DATABASE_URL) {
-  console.error("DATABASE_URL is not set");
-  process.exit(1);
-}
-
-const db = drizzle(DATABASE_URL);
 
 const PREDEFINED_CATEGORIES = [
   {
