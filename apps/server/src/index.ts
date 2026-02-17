@@ -5,6 +5,9 @@ import { Elysia } from "elysia";
 import { z } from "zod";
 
 import { betterAuth as auth } from "./modules/auth";
+import { categories } from "./modules/category";
+import { items } from "./modules/item";
+import { tags } from "./modules/tag";
 import { OpenAPI } from "./plugins/openapi";
 
 const app = new Elysia()
@@ -39,6 +42,9 @@ const app = new Elysia()
     })
   )
   .use(auth)
+  .use(categories)
+  .use(items)
+  .use(tags)
   .get("/", () => "OK")
   .listen(Bun.env.PORT ?? 3000, () =>
     console.log(
